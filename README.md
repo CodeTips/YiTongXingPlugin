@@ -1,7 +1,7 @@
 # YiTongXingPlugin
 ![platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 
-<img src="./Other/Screenshots/image.png="296" height="526" />
+<img src="./Other/Screenshots/image.png="296" height="526"/>
 
 ### 说明
 * 免责声明：本项目旨在学习 iOS 逆向的一点实践，不可使用于商业和个人其他意图。若使用不当，均由个人承担。
