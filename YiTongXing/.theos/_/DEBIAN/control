@@ -1,0 +1,10 @@
+Package: net.codetips.yitongxing
+Name: YiTongXing++
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: 添加ShortcutItem，支持快捷扫码和查看历史订单!
+Maintainer: Loveletter
+Author: Loveletter
+Section: Tweaks
+Version: 1.0.0-1+debug
+Installed-Size: 128
