@@ -3,6 +3,7 @@
 
 static NSString *kUIApplicationShortcutItemIconTypeQRCode = @"UIApplicationShortcutItemIconTypeQRCode";
 static NSString *kUIApplicationShortcutItemIconTypeOrder = @"UIApplicationShortcutItemIconTypeOrder";
+static NSString *kUIApplicationShortcutItemIconTypeTicket = @"UIApplicationShortcutItemIconTypeTicket";
 
 @implementation ShortcutItemHandler
 
@@ -20,10 +21,12 @@ static NSString *kUIApplicationShortcutItemIconTypeOrder = @"UIApplicationShortc
 - (void)addShortcutItems
 {
     UIApplicationShortcutItem * codeItem= [[UIApplicationShortcutItem alloc]initWithType:kUIApplicationShortcutItemIconTypeQRCode localizedTitle:@"进站/出站扫码" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithTemplateImageName:@"去乘车"] userInfo:nil];
+        
+    UIApplicationShortcutItem * orderItem= [[UIApplicationShortcutItem alloc]initWithType:kUIApplicationShortcutItemIconTypeOrder localizedTitle:@"乘车记录" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithTemplateImageName:@"个人中心乘车记录"] userInfo:nil];
     
-    UIApplicationShortcutItem * orderItem= [[UIApplicationShortcutItem alloc]initWithType:kUIApplicationShortcutItemIconTypeOrder localizedTitle:@"乘车/购票记录" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithTemplateImageName:@"乘车记录"] userInfo:nil];
-    
-    [[UIApplication sharedApplication] setShortcutItems:@[codeItem,orderItem]];
+    UIApplicationShortcutItem * ticketItem= [[UIApplicationShortcutItem alloc]initWithType:kUIApplicationShortcutItemIconTypeTicket localizedTitle:@"购票记录" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithTemplateImageName:@"个人中心购票记录"] userInfo:nil];
+        
+    [[UIApplication sharedApplication] setShortcutItems:@[codeItem,orderItem,ticketItem]];
 }
 
 - (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem
@@ -42,6 +45,15 @@ static NSString *kUIApplicationShortcutItemIconTypeOrder = @"UIApplicationShortc
             [self afterDelay:_background ? 0 : 1 runBlock:^{
             YTXPersonalController *personalController = (YTXPersonalController*)[(UINavigationController*)tabBarController.selectedViewController topViewController];
             NSIndexPath *indePath = [NSIndexPath indexPathForRow:0 inSection:1];
+            [personalController tableView:personalController.tableView didSelectRowAtIndexPath:indePath];
+        }];
+        handled = YES;
+    }
+    else if([shortcutItem.type isEqualToString:kUIApplicationShortcutItemIconTypeTicket]){
+        tabBarController.selectedIndex = 2;
+        [self afterDelay:_background ? 0 : 1 runBlock:^{
+            YTXPersonalController *personalController = (YTXPersonalController*)[(UINavigationController*)tabBarController.selectedViewController topViewController];
+            NSIndexPath *indePath = [NSIndexPath indexPathForRow:1 inSection:1];
             [personalController tableView:personalController.tableView didSelectRowAtIndexPath:indePath];
         }];
         handled = YES;
