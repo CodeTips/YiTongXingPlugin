@@ -34,11 +34,7 @@ static NSString *kUIApplicationShortcutItemIconTypeOrder = @"UIApplicationShortc
     
     BOOL handled = NO;
     if ([shortcutItem.type isEqualToString:kUIApplicationShortcutItemIconTypeQRCode]) {
-        tabBarController.selectedIndex = 0;
-        [self afterDelay:_background ? 0 : 1 runBlock:^{
-            YTXHomeController *homeViewController = (YTXHomeController*)[(UINavigationController*)tabBarController.selectedViewController topViewController];
-            [homeViewController.entryView scanQRCodeButtonClick];
-        }];
+        tabBarController.selectedIndex = 1;
         handled = YES;
     }
     else if([shortcutItem.type isEqualToString:kUIApplicationShortcutItemIconTypeOrder]){
